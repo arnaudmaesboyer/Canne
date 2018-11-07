@@ -7,5 +7,5 @@ def envoi {
 }
 
 def connection {
-  #Gestion de la connexion au wifi du portable parametrée d'avance. 
+  #Gestion de la connexion au wifi du portable parametrée d'avance . 
 }
