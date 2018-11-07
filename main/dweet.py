@@ -3,10 +3,9 @@ def Compteur {
 }
 
 def envoi {
-  #Fonction gérant l'envoi des données récolté a dweet et ajoutant les données si plusieurs données envoyées le meme jour
-}
+  #Fonction gérant l'envoi des données récolté a dweet .
 def reception {
-  #Fonction gérant la reception des données de dweet
+  #Fonction gérant la reception des données de dweet si la canne a déja était utilisée aujourd'hui.
 }
 
 def connexion {
