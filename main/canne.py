@@ -5,14 +5,19 @@ from grovepi import *
 # SIG,NC,VCC,GND
 buzzer = 8
 ultrasonic_ranger1 = 4
-ultrasonic_ranger2 = 5
-ultrasonic_ranger3 = 6
+ultrasonic_ranger2 = 5 ### A VERIFIER
+ultrasonic_ranger3 = 6 ### A VERIFIER
 button = 3
 
 pinMode(button,"INPUT")
 pinMode(buzzer,"OUTPUT")
 
 while True:
+    
+    #######
+    ## CODAGE CALIBRAGE ACCELEROMETRE A IMPLEMENTER ##
+    #######
+    
     # Si le boutton On/Off est activé alors les capteurs ultrasons sont lancés
     while digitalRead(button)==1:
         try:
@@ -74,3 +79,13 @@ while True:
             break
         except IOError:
             print ("Error")
+            
+            
+### def CanneEstTombe() ### fonction permettant d'émettre un bip d'une certaine fréquence pour indiquer un changement brutal
+### dans les valeurs de l'accéléromètre qui indiquerais une chute de la canne
+
+### def CalibrageCanne() ### fonction permettant de calibrer la canne avec l'accéléromètre
+
+
+
+ 
