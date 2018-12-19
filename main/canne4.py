@@ -1,22 +1,36 @@
 # coding: utf-8
 import time
 from grovepi import *
+from LSM6DS3 import *
 
 # Connect the Grove Buzzer to digital port D8
 # SIG,NC,VCC,GND
 buzzer = 2
 ultrasonic_ranger1 = 4
 ultrasonic_ranger2 = 3 
-button = 7
+buttonActivationCanne = 7
+buttonCalibrage = 8
+accelerometre = LSM6DS3()
 
-pinMode(button,"INPUT")
+pinMode(buttonActivationCanne,"INPUT")
+pinMode(buttonCalibrage,"INPUT")
 pinMode(buzzer,"OUTPUT")
 
 compteurMarche = 0 #Appel à la fonction qui renvoie le nombre de marches rencontrées ce jour-ci grâce à une requete de à dweet
-booleanMarche = False
+booleanMarche = False #Booléen pour savoir si l'utilisateur passe sur une marche
+booleanActiver = False #Booléen pour activer ou désactiver la détection de la canne
+compteurActiver = 0
 
 def calibrageCanne():
-     
+     while digitalRead(buttonCalibrage)==1:
+              axeX = accelerometre.readRawAccelX()
+              axeY = accelerometre.readRawAccelY()
+              axeZ = accelerometre.readRawAccelZ()
+              print (axeX)
+              print (axeY)
+              print (axeZ)
+              time.sleep(0.08)
+        
 
 def activationBuzzer(tempsBuzzerInactif):
      digitalWrite(buzzer,1)
@@ -62,12 +76,17 @@ def frequenceBuzzer(valeurCapteur,booleanMarche):
 
 while True:
     
-    #######
-    ## CODAGE CALIBRAGE ACCELEROMETRE A IMPLEMENTER ##
-    #######
+     
+    calibrageCanne() #Fonction pour calibrer la canne
     
+    if (digitalRead(buttonActivationCanne)==1):
+         if (compteurActiver == 0):
+              compteurActiver = 1
+         else:
+              compteurActiver = 0
+         
     # Si le boutton On/Off est activé alors les capteurs ultrasons sont lancés
-    while digitalRead(button)==1:
+    while compteurActiver==1:
 	print ("Bouton appuyé")
      #   try:
             # Buzz si le capteur 1 est activé
@@ -86,10 +105,12 @@ while True:
              
         frequenceBuzzer(valeurCapteur2,booleanMarche)
 
+        while (digitalRead(buttonActivationCanne)==1):
+             print ("Fonctionnalité capteur arrêtée")
+             compteurActiver = 0     # REGLER PROBLEME COMPTEUR MARCHE
 
-    if(booleanMarche == True):
+    if(booleanMarche == True): 
          compteurMarche = compteurMarche + 1
     print ("Bouton relaché")
     print("CompteurMarche :")
-    print(compteurMarche)
-    
+    print(compteurMarche)    
