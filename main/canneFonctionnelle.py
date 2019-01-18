@@ -18,7 +18,7 @@ pinMode(buttonActivationCanne,"INPUT")
 pinMode(buttonCalibrage,"INPUT")
 pinMode(buzzer,"OUTPUT")
 
-compteurMarche = 0 #Appel à la fonction qui renvoie le nombre de marches rencontrées ce jour-ci grâce à une requete de à dweet
+compteurMarche = 0 
 booleanMarche = False #Booléen pour savoir si l'utilisateur passe sur une marche
 booleanActiver = False #Booléen pour activer ou désactiver la détection de la canne
 compteurActiver = 0
@@ -100,15 +100,13 @@ while True:
     # Si le boutton On/Off est activé alors les capteurs ultrasons sont lancés
     while compteurActiver==1:
 	print ("Bouton appuyé")
-	#booleanEnvoieDonnee = True
-     #   try:
+	
             # Buzz si le capteur 1 est activé
 	valeurCapteur1 = ultrasonicRead(ultrasonic_ranger1)
 	valeurCapteur2 = ultrasonicRead(ultrasonic_ranger2)
 	
 	print ("Distance Capteur 1")
 	print (valeurCapteur1)
-
 	print ("Distance Capteur 2")
 	print (valeurCapteur2)
 
@@ -120,7 +118,7 @@ while True:
 
         while (digitalRead(buttonActivationCanne)==1):
              print ("Fonctionnalité capteur arrêtée")
-             compteurActiver = 0     # REGLER PROBLEME COMPTEUR MARCHE
+             compteurActiver = 0    
 
     if(booleanMarche): 
          compteurMarche = compteurMarche + 1
