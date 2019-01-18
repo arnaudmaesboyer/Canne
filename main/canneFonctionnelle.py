@@ -18,7 +18,7 @@ pinMode(buttonActivationCanne,"INPUT")
 pinMode(buttonCalibrage,"INPUT")
 pinMode(buzzer,"OUTPUT")
 
-compteurMarche = 0 #Appel à la fonction qui renvoie le nombre de marches rencontrées ce jour-ci grâce à une requete de à dweet
+compteurMarche = 0 
 booleanMarche = False #Booléen pour savoir si l'utilisateur passe sur une marche
 booleanActiver = False #Booléen pour activer ou désactiver la détection de la canne
 compteurActiver = 0
