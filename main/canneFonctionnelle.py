@@ -1,7 +1,6 @@
 # coding: utf-8
 import time
 import os
-import requests
 from grovepi import *
 from LSM6DS3 import *
 
